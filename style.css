@@ -64,3 +64,34 @@ body{
     gap: 10%;
     border-radius: 10px;
 }
+
+#add-task{
+    background-color: whitesmoke;
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: 2%;
+}
+#task-title{
+    width: 100%;
+}
+#task-title input{
+    padding: 2%;
+    border-radius: 5px;
+}
+#task-desc{
+    width: 100%;
+}
+#task-desc textarea{
+    border-radius: 5px;
+}
+#add-task-buttons{
+    margin-left: auto;
+}
+#add-task-buttons ,button ,select{
+    padding: 10px;
+    border-radius: 5px;
+}
