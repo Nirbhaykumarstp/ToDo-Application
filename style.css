@@ -68,7 +68,7 @@ body{
 #add-task{
     background-color: whitesmoke;
     width: max-content;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     flex-direction: column;

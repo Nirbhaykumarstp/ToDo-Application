@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang='en'>
+
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>To-Do App</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 </head>
+
 <body>
     <header id="head">
         <div class="top-heading">
@@ -13,7 +16,7 @@
             <hr>
             <h5>Productivity Matters!!</h5>
         </div>
-        <div id="Add-ToDo">
+        <div id="Add-ToDo" onclick="addBtn()">
             <div>
                 +
             </div>
@@ -21,28 +24,50 @@
                 <h3>Add a New Task</h3>
             </div>
         </div>
-        <div id="add-task">
+        <dialog id="add-task">
             <div id="task-title">
-                <input type="text" size="50" placeholder="Enter The Title">
-            </div>
-            <div id="task-desc">
-                <textarea name="desc" id="desc" rows="5" cols="60" placeholder="Description..."></textarea>
+                <input type="text" size="50" placeholder="Enter The Title" id="actual-title">
             </div>
             <div id="add-task-buttons">
-                <button>Add</button>
+                <button onclick="add()">Add</button>
                 <select name="priority" id="priority-menu">
                     <option value="medium">Medium</option>
                     <option value="high">High</option>
                     <option value="low">Low</option>
                 </select>
-                <button>Cancel</button>
+                <button id="close-add-dialog">Cancel</button>
             </div>
-        </div>
+        </dialog>
+
+        <dialog id="viewDialog">
+            <div class="dialog-content">
+                <h2 id="todo-title">Dialog Title</h2>
+                <p>This is a modern dialog box created using native HTML, CSS, and JavaScript.</p>
+
+                <!-- Action / Close Buttons -->
+                <div class="dialog-actions">
+                    <button id="closeModalBtn" class="btn-close">Close</button>
+                    <button id="editBtn" class="btn-edit">Edit</button>
+                </div>
+            </div>
+        </dialog>
+
+        <dialog id="update-dialog">
+            <input type="text" placeholder="Enter your new Title" id="updatedTodoInput">
+            <br>
+            <button id="update-todo">Update ToDo</button>
+            <button id="delete-todo">Delete Todo</button>
+            <button id="close-update">Close</button>
+        </dialog>
+
     </header>
     <section class="List-Panel">
         <div class="container">
-            <div class="counter"><h3>Tasks:<span id="tasks-count">0</span>/<span id="Total-tasks">0</span></h3></div>
-            <div id="todo-1" class="ToDo-row">
+            <div class="counter">
+                <h3>Tasks:<span id="tasks-count">0</span>/<span id="Total-tasks">0</span></h3>
+            </div>
+            <ul id="todolistelement"></ul>
+            <!-- <div id="todo-1" class="ToDo-row">
                 <span>1</span>  <div><input type="checkbox"></div> <div><h4>Go to the gym and exercise</h4></div>
             </div>
              <div id="todo-1" class="ToDo-row">
@@ -53,8 +78,9 @@
             </div>
             <div id="todo-1" class="ToDo-row">
                 <span>1</span>  <div><input type="checkbox"></div> <div><h4>Go to the gym and exercise</h4></div>
-            </div>
+            </div> -->
         </div>
     </section>
 </body>
+
 </html>
