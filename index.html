@@ -25,25 +25,26 @@
             </div>
         </div>
         <dialog id="add-task">
+            <h2>Add ToDo</h2>
             <div id="task-title">
-                <input type="text" size="50" placeholder="Enter The Title" id="actual-title">
+                <input type="text" size="40" placeholder="Enter The Title" id="actual-title">
             </div>
             <div id="add-task-buttons">
-                <button onclick="add()">Add</button>
-                <select name="priority" id="priority-menu">
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
-                    <option value="low">Low</option>
-                </select>
                 <button id="close-add-dialog">Cancel</button>
+                <label for="priority-menu">Priority
+                    <select name="priority" id="priority-menu">
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                        <option value="low">Low</option>
+                    </select></label>
+                <button onclick="add()">Add</button>
             </div>
         </dialog>
 
         <dialog id="viewDialog">
             <div class="dialog-content">
+                <h4>ToDo Title</h4>
                 <h2 id="todo-title">Dialog Title</h2>
-                <p>This is a modern dialog box created using native HTML, CSS, and JavaScript.</p>
-
                 <!-- Action / Close Buttons -->
                 <div class="dialog-actions">
                     <button id="closeModalBtn" class="btn-close">Close</button>
@@ -53,11 +54,15 @@
         </dialog>
 
         <dialog id="update-dialog">
-            <input type="text" placeholder="Enter your new Title" id="updatedTodoInput">
-            <br>
-            <button id="update-todo">Update ToDo</button>
-            <button id="delete-todo">Delete Todo</button>
-            <button id="close-update">Close</button>
+            <h2>Update ToDo</h2>
+            <div class="dialog-actions">
+                <button id="delete-todo"><img src="./images/icons8-delete-24.png" alt="delete"></button>
+            </div>
+            <input type="text" placeholder="Enter your new Title" id="updatedTodoInput" size="45">
+            <div class="dialog-actions">
+                <button id="close-update">Close</button>
+                <button id="update-todo">Update ToDo</button>
+            </div>
         </dialog>
 
     </header>
