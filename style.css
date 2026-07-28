@@ -6,6 +6,7 @@ body{
     font-size: larger;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     background-color: #FFFFFF;
+    /* background-color: rgb(29, 27, 27); */
 }
 #head{
     /* background-color: rgb(100, 235, 235); */
@@ -22,7 +23,7 @@ body{
 
 }
 #Add-ToDo{
-    width: 50%;
+  width: 50%;
   display: flex;
   flex-direction: row;
   gap: 30px;
@@ -74,6 +75,62 @@ body{
     flex-direction: column;
     gap: 10px;
     padding: 2%;
+    margin: auto;
+    border-radius: 5px;
+    border: none;
+}
+#add-task-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+#viewDialog{
+    background-color: whitesmoke;
+    width: max-content;
+    min-width: 35%;
+    margin: 0 0 10px 0;
+    gap: 10px;
+    padding: 2%;
+    margin: auto;
+    border-radius: 5px;
+    border: none;
+}
+#update-dialog{
+    background-color: whitesmoke;
+    width: max-content;
+    gap: 10px;
+    padding: 2%;
+    margin: auto;
+    border-radius: 5px;
+    border: none;
+}
+.dialog-actions{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 5%;
+}
+#updatedTodoInput{
+    min-width: 90%;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 10px 0;
+    border: none;
+}
+#update-dialog::backdrop{
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+}
+#viewDialog::backdrop{
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+#add-task::backdrop {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
 }
 #task-title{
     width: 100%;
@@ -94,4 +151,21 @@ body{
 #add-task-buttons ,button ,select{
     padding: 10px;
     border-radius: 5px;
+}
+
+#todolistelement li{
+    list-style: none;
+    background-color: aliceblue;
+}
+label{
+    font-size: medium;
+}
+#delete-todo{
+    height: 45px;
+    width: 45px;
+    background-color: #f87272;
+}
+#delete-todo:hover{
+    background-color: #f53041;
+    cursor: pointer;
 }

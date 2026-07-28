@@ -5,12 +5,6 @@ function addBtn()
 {
     let addTask = document.getElementById("add-task")
     addTask.style.display = "flex"
-    const rect = addTask.getBoundingClientRect();
-    const isInDialog = 
-    (
-        rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
-        rect.left <= event.clientX && event.clientX <= rect.left + rect.width
-    );
     addTask.showModal()
     let closeaddDialog = document.getElementById("close-add-dialog")
     closeaddDialog.addEventListener("click", () => 
@@ -24,6 +18,7 @@ function add()
     let title = document.getElementById("actual-title").value
     console.log(title)
     todoList.push({ id: todoList.length + 1, titleKey: title })
+    document.getElementById("actual-title").value=""
     updateFrontend(todoList)
 }
 function updateFrontend(todoList) {
@@ -31,7 +26,7 @@ function updateFrontend(todoList) {
     todolistelement.innerHTML = ""
     for (index in todoList) {
         console.log(index)
-        todolistelement.innerHTML += `<li onClick="todoClicked(${todoList[index].id})"> ${todoList[index].titleKey} </li>`
+        todolistelement.innerHTML += `<li onClick="todoClicked(${todoList[index].id})"> ${todoList[index].titleKey} <input type='checkbox' id=${todoList[index].id} onClick='event.stopPropagation()'></li>`
     }
 }
 
@@ -66,6 +61,11 @@ function todoClicked(id)
             console.log(todoId)
             deleteProcess(todoId)
         })
+
+        document.getElementById("close-update").addEventListener("click",()=>{
+            document.getElementById("update-dialog").close()
+        }) 
+
     })
 
     document.getElementById("closeModalBtn").addEventListener("click",()=>{
@@ -120,5 +120,3 @@ function deleteProcess(id)
     })
     console.log(todoList)
 }
-
-
