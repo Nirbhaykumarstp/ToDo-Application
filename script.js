@@ -1,6 +1,5 @@
 let todoList = []
 let updateIds = []
-
 function addBtn() 
 {
     let addTask = document.getElementById("add-task")
@@ -26,7 +25,7 @@ function updateFrontend(todoList) {
     todolistelement.innerHTML = ""
     for (index in todoList) {
         console.log(index)
-        todolistelement.innerHTML += `<li onClick="todoClicked(${todoList[index].id})"> ${todoList[index].titleKey} <input type='checkbox' id=${todoList[index].id} onClick='event.stopPropagation()'></li>`
+        todolistelement.innerHTML += `<li onClick="todoClicked(${todoList[index].id})"> ${todoList[index].titleKey} <input type='checkbox' id= ${todoList[index].id} class="check" onClick="todoChecked(${todoList[index].id})" onClick="event.stopPropagation()"></li>`
     }
 }
 
@@ -96,10 +95,29 @@ function updatetodoList(todoId)
         {
             console.log(todoList[list].titleKey)
             todoListElement[list].innerText=todoList[list].titleKey
+            let checkbox = document.createElement('input')
+            checkbox.type = 'checkbox'
+            checkbox.className="check"
+            checkbox.id = todoList[list].id
+
+            checkbox.addEventListener('click', (event) => {
+                event.stopPropagation()
+                todoChecked(todoId)
+            })
+            checkbox.addEventListener('click', () => {
+                taskDone(todoId)
+            })
+
+            todoListElement[list].appendChild(checkbox)
             document.getElementById("update-dialog").close()
             break
         }
     }
+}
+
+function todoChecked(id)
+{
+    console.log(id)
 }
 
 function deleteProcess(id)
