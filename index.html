@@ -27,16 +27,18 @@
         <dialog id="add-task">
             <h2>Add ToDo</h2>
             <div id="task-title">
-                <input type="text" size="40" placeholder="Enter The Title" id="actual-title">
-            </div>
-            <div id="add-task-buttons">
-                <button id="close-add-dialog">Cancel</button>
+                <input type="text" size="40" placeholder="Enter The Title" id="actual-title" required >
+                <br />
                 <label for="priority-menu">Priority
                     <select name="priority" id="priority-menu">
                         <option value="medium">Medium</option>
                         <option value="high">High</option>
                         <option value="low">Low</option>
-                    </select></label>
+                    </select>
+                </label>
+            </div>
+            <div id="add-task-buttons">
+                <button id="close-add-dialog">Cancel</button>
                 <button onclick="add()">Add</button>
             </div>
         </dialog>
@@ -58,7 +60,16 @@
             <div class="dialog-actions">
                 <button id="delete-todo"><img src="./images/icons8-delete-24.png" alt="delete"></button>
             </div>
-            <input type="text" placeholder="Enter your new Title" id="updatedTodoInput" size="45">
+            <div id="task-title">
+                <input type="text" placeholder="Enter your new Title" id="updatedTodoInput" size="45" required >
+                <label for="priority-menu">Priority
+                    <select name="priority" id="priority-menu">
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                        <option value="low">Low</option>
+                    </select>
+                </label>
+            </div>
             <div class="dialog-actions">
                 <button id="close-update">Close</button>
                 <button id="update-todo">Update ToDo</button>
@@ -69,7 +80,7 @@
     <section class="List-Panel">
         <div class="container">
             <div class="counter">
-                <h3>Tasks:<span id="tasks-count">0</span>/<span id="Total-tasks">0</span></h3>
+                <h3>Tasks <span id="tasks-count">0</span>/<span id="Total-tasks">0</span></h3>
             </div>
             <ul id="todolistelement"></ul>
             <!-- <div id="todo-1" class="ToDo-row">

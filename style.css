@@ -73,7 +73,7 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     padding: 2%;
     margin: auto;
     border-radius: 5px;
@@ -111,11 +111,12 @@ body{
     justify-content: end;
     align-items: center;
     gap: 5%;
+    margin-top: 7% ;
 }
 #updatedTodoInput{
     min-width: 90%;
     width: 100%;
-    padding: 10px;
+    padding: 5px;
     margin: 10px 0 10px 0;
     border: none;
 }
@@ -134,7 +135,20 @@ body{
 }
 #task-title{
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
+#task-title label{
+    width: 100%;
+}
+
+#task-title label select{
+    width: 55%;
+    padding: 1%;
+}
+
 #task-title input{
     padding: 2%;
     border-radius: 5px;
@@ -156,16 +170,31 @@ body{
 #todolistelement li{
     list-style: none;
     background-color: aliceblue;
+    padding: 1%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 10%;
 }
+
 label{
     font-size: medium;
 }
 #delete-todo{
     height: 45px;
     width: 45px;
-    background-color: #f87272;
+    border: none;
 }
 #delete-todo:hover{
     background-color: #f53041;
     cursor: pointer;
 }
+
+#todolistelement{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: inherit;
+}
+
