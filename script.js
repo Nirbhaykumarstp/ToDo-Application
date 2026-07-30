@@ -1,5 +1,7 @@
 let todoList = []
 let updateIds = []
+let sumforTotal=0
+let sumforTask=0
 function addBtn() 
 {
     let addTask = document.getElementById("add-task")
@@ -14,18 +16,29 @@ function addBtn()
 }
 function add() 
 {
+    
     let title = document.getElementById("actual-title").value
-    console.log(title)
-    todoList.push({ id: todoList.length + 1, titleKey: title })
-    document.getElementById("actual-title").value=""
-    updateFrontend(todoList)
+    if(title=="")
+    {
+        alert("Don't Add empty ToDo")
+    }
+    else
+    {
+        let totalTask=document.getElementById("Total-tasks")
+        sumforTotal=sumforTotal+1
+        totalTask.innerText=sumforTotal
+        console.log(title)
+        todoList.push({ id: todoList.length + 1, titleKey: title })
+        document.getElementById("actual-title").value=""
+        updateFrontend(todoList)
+    }
 }
 function updateFrontend(todoList) {
     let todolistelement = document.getElementById("todolistelement")
     todolistelement.innerHTML = ""
     for (index in todoList) {
         console.log(index)
-        todolistelement.innerHTML += `<li onClick="todoClicked(${todoList[index].id})"> ${todoList[index].titleKey} <input type='checkbox' id= ${todoList[index].id} class="check" onClick="todoChecked(${todoList[index].id})" onClick="event.stopPropagation()"></li>`
+        todolistelement.innerHTML += `<li><label onClick="todoClicked(${todoList[index].id})">${todoList[index].titleKey}</label> <input type='checkbox' id= ${todoList[index].id} class="check" onClick="todoChecked(${todoList[index].id})" onClick="event.stopPropagation()"></li>`
     }
 }
 
@@ -75,15 +88,22 @@ function todoClicked(id)
 function updateProcess(id)
 {
     let updatedTitle=document.getElementById("updatedTodoInput").value
-    let todoupdate=todoList.find((todo)=>
+    if(updatedTitle=="")
     {
-        if(todo.id===id)
+        alert("Don't Add empty ToDo")
+    }
+    else
+    {
+        let todoupdate=todoList.find((todo)=>
         {
-            todo.titleKey=updatedTitle
-            console.log(todo)
-        }
-    })
-    updatetodoList(id)
+            if(todo.id===id)
+            {
+                todo.titleKey=updatedTitle
+                console.log(todo)
+            }
+        })
+        updatetodoList(id)
+    }
 }
 
 function updatetodoList(todoId)
@@ -94,16 +114,16 @@ function updatetodoList(todoId)
         if(todoList[list].id===todoId)
         {
             console.log(todoList[list].titleKey)
-            todoListElement[list].innerText=todoList[list].titleKey
+            todoListElement[list].innerHTML=`<label onClick="todoClicked(${todoList[list].id})"> ${todoList[list].titleKey} </label>`
             let checkbox = document.createElement('input')
             checkbox.type = 'checkbox'
             checkbox.className="check"
             checkbox.id = todoList[list].id
+            // checkbox.addEventListener('click', (event) => {
+            //     event.stopPropagation()
+            //     todoChecked(todoId)
+            // })
 
-            checkbox.addEventListener('click', (event) => {
-                event.stopPropagation()
-                todoChecked(todoId)
-            })
             checkbox.addEventListener('click', () => {
                 taskDone(todoId)
             })
@@ -117,7 +137,18 @@ function updatetodoList(todoId)
 
 function todoChecked(id)
 {
-    console.log(id)
+    let checkedtoDo=document.getElementById(id)
+    let taskCounter=document.getElementById("tasks-count")
+    if(checkedtoDo.checked)
+    {
+        sumforTask+=1
+        taskCounter.innerText=sumforTask
+    }
+    else{
+        sumforTask-=1
+        taskCounter.innerText=sumforTask
+    }
+    console.log(checkedtoDo)
 }
 
 function deleteProcess(id)
@@ -128,7 +159,7 @@ function deleteProcess(id)
         if(todoList[list].id===id)
         {
             todoList.splice(list,1)
-            document.getElementById("todolistelement").removeChild(todoListElement[list])
+            document.getElementById("todolistelement").removeChild(todoListElement[list])   
             document.getElementById("update-dialog").close()
             break
         }
