@@ -16,7 +16,6 @@ function addBtn()
 }
 function add() 
 {
-    
     let title = document.getElementById("actual-title").value
     if(title=="")
     {
@@ -38,10 +37,10 @@ function updateFrontend(todoList) {
     todolistelement.innerHTML = ""
     for (index in todoList) {
         console.log(index)
-        todolistelement.innerHTML += `<li><label onClick="todoClicked(${todoList[index].id})">${todoList[index].titleKey}</label> <input type='checkbox' id= ${todoList[index].id} class="check" onClick="todoChecked(${todoList[index].id})" onClick="event.stopPropagation()"></li>`
+        const isChecked = todoList[index].completed ? "checked" : ""
+        todolistelement.innerHTML += `<li><label onClick="todoClicked(${todoList[index].id})">${todoList[index].titleKey}</label> <input type='checkbox' id= ${todoList[index].id} class="check" ${isChecked} onClick="todoChecked(${todoList[index].id}); event.stopPropagation()"></li>`
     }
 }
-
 function todoClicked(id) 
 {
     id=Number(id)
@@ -68,10 +67,14 @@ function todoClicked(id)
             updateProcess(todoId)
         })
 
-        document.getElementById("delete-todo").addEventListener("click",()=>{
-            let todoId=updateIds.pop()
-            console.log(todoId)
-            deleteProcess(todoId)
+        document.getElementById("delete-todo").addEventListener("click",(event)=>{
+            let res=confirm("Are you sure You want to Delete this ToDo Task")
+            if(res)
+            {
+                let todoId=updateIds.pop()
+                console.log(todoId)
+                deleteProcess(todoId)
+            }
         })
 
         document.getElementById("close-update").addEventListener("click",()=>{
@@ -125,10 +128,13 @@ function updatetodoList(todoId)
             // })
 
             checkbox.addEventListener('click', () => {
-                taskDone(todoId)
+                todoChecked(todoId)
             })
-
             todoListElement[list].appendChild(checkbox)
+            if(todoList[list].completed)
+            {
+                todoChecked(todoId)
+            }
             document.getElementById("update-dialog").close()
             break
         }
@@ -139,16 +145,22 @@ function todoChecked(id)
 {
     let checkedtoDo=document.getElementById(id)
     let taskCounter=document.getElementById("tasks-count")
-    if(checkedtoDo.checked)
+    let todo = todoList.find(t => t.id === id)
+    if(todo) {
+        todo.completed = checkedtoDo.checked
+    }
+    if(!taskCounter.innerText==0)
     {
-        sumforTask+=1
-        taskCounter.innerText=sumforTask
+        if(checkedtoDo.checked)
+        {
+            sumforTask+=1
+            taskCounter.innerText=sumforTask
+        }
+        else{
+            sumforTask-=1
+            taskCounter.innerText=sumforTask
+        }
     }
-    else{
-        sumforTask-=1
-        taskCounter.innerText=sumforTask
-    }
-    console.log(checkedtoDo)
 }
 
 function deleteProcess(id)
@@ -158,8 +170,19 @@ function deleteProcess(id)
     {
         if(todoList[list].id===id)
         {
+            let totalTask=document.getElementById("Total-tasks")
+            sumforTotal-=1
+            totalTask.innerText=sumforTotal
+            let checkbox=document.getElementById(id)
+            if(checkbox.checked)
+            {
+                let taskDone=document.getElementById("tasks-count")
+                sumforTask-=1
+                taskDone.innerText=sumforTask
+            }
             todoList.splice(list,1)
             document.getElementById("todolistelement").removeChild(todoListElement[list])   
+           
             document.getElementById("update-dialog").close()
             break
         }
