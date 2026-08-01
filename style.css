@@ -78,6 +78,7 @@ body{
     margin: auto;
     border-radius: 5px;
     border: none;
+    opacity: 0.9;
 }
 #add-task-buttons{
     display: flex;
@@ -90,12 +91,13 @@ body{
     background-color: whitesmoke;
     width: max-content;
     min-width: 35%;
-    margin: 0 0 10px 0;
+    margin: 10px 0 10px 0;
     gap: 10px;
     padding: 2%;
     margin: auto;
     border-radius: 5px;
     border: none;
+    opacity: 0.7;
 }
 #update-dialog{
     background-color: whitesmoke;
@@ -105,6 +107,7 @@ body{
     margin: auto;
     border-radius: 5px;
     border: none;
+    opacity: 0.9;
 }
 .dialog-actions{
     display: flex;
@@ -170,12 +173,14 @@ body{
 #todolistelement li{
     list-style: none;
     background-color: aliceblue;
-    padding: 1%;
+    padding: 2%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     flex-direction: row-reverse;
     gap: 10%;
+    border: 1px solid;
+    border-radius: 10px;
 }
 
 label{
@@ -197,4 +202,27 @@ label{
     flex-direction: column;
     gap: inherit;
 }
-
+#close-add-dialog:hover{
+    background-color: rgb(241, 79, 79);
+    color: antiquewhite;
+}
+#addTaskbtn{
+    background-color: rgb(41, 41, 243);
+    color: antiquewhite;
+}
+#closeModalBtn:hover{
+    background-color: rgb(241, 79, 79);
+    color: antiquewhite;
+}
+#editBtn{
+    background-color: rgb(41, 41, 243);
+    color: antiquewhite;
+}
+#close-update:hover{
+    background-color: rgb(241, 79, 79);
+    color: antiquewhite;
+}
+#update-todo{
+    background-color: rgb(41, 41, 243);
+    color: antiquewhite;
+}
