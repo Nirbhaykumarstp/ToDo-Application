@@ -27,20 +27,53 @@ function add()
         sumforTotal=sumforTotal+1
         totalTask.innerText=sumforTotal
         console.log(title)
-        todoList.push({ id: todoList.length + 1, titleKey: title })
+        let priority=document.getElementById("priority-menu").value
+        todoList.push({ id: todoList.length + 1, titleKey: title ,priorityType: priority})
         document.getElementById("actual-title").value=""
         updateFrontend(todoList)
     }
 }
-function updateFrontend(todoList) {
+
+function updateFrontend(todoList) 
+{
     let todolistelement = document.getElementById("todolistelement")
     todolistelement.innerHTML = ""
     for (index in todoList) {
         console.log(index)
         const isChecked = todoList[index].completed ? "checked" : ""
-        todolistelement.innerHTML += `<li><label onClick="todoClicked(${todoList[index].id})">${todoList[index].titleKey}</label> <input type='checkbox' id= ${todoList[index].id} class="check" ${isChecked} onClick="todoChecked(${todoList[index].id}); event.stopPropagation()"></li>`
+        todolistelement.innerHTML += `<li><label onClick="todoClicked(${todoList[index].id})">${todoList[index].titleKey}</label> <label class="priority">${todoList[index].priorityType}</label> <input type='checkbox' id= ${todoList[index].id} class="check" ${isChecked} onClick="todoChecked(${todoList[index].id}); event.stopPropagation()"></li>`
     }
 }
+// function setPriority(items)
+// {
+//     console.log(items)
+//     let lis=document.querySelectorAll("li")
+//     console.log(lis)
+//     for(let i=0;i<items.length;i++)
+//     {
+//         if(items[i].id==lis.length)
+//         {
+//             let list=lis[i]
+//             let priority=items[i].priorityType
+//             if(priority=="medium")
+//             {
+//                 list.style.borderColor="green"
+//                 document.getElementById(items[i].id).backgroundColor="green"
+//             }
+//             else if(priority=="high")
+//             {
+//                 list.style.borderColor="red"
+//                 document.getElementById(items[i].id).backgroundColor="red"
+//             }
+//             else if(priority=="low")
+//             {
+//                 list.style.borderColor="yellow"
+//                 document.getElementById(items[i].id).backgroundColor="yellow"
+//             }
+//             console.log(list,priority)
+//         }
+//     }
+// }
 function todoClicked(id) 
 {
     id=Number(id)
@@ -91,6 +124,7 @@ function todoClicked(id)
 function updateProcess(id)
 {
     let updatedTitle=document.getElementById("updatedTodoInput").value
+    let priority=document.getElementById("priority-menu-update").value
     if(updatedTitle=="")
     {
         alert("Don't Add empty ToDo")
@@ -101,7 +135,9 @@ function updateProcess(id)
         {
             if(todo.id===id)
             {
+                
                 todo.titleKey=updatedTitle
+                todo.priorityType=priority
                 console.log(todo)
             }
         })
@@ -122,14 +158,16 @@ function updatetodoList(todoId)
             checkbox.type = 'checkbox'
             checkbox.className="check"
             checkbox.id = todoList[list].id
-            // checkbox.addEventListener('click', (event) => {
-            //     event.stopPropagation()
-            //     todoChecked(todoId)
-            // })
+
+            let labelPriority=document.createElement('label')
+            labelPriority.className="priority"
 
             checkbox.addEventListener('click', () => {
                 todoChecked(todoId)
             })
+
+            todoListElement[list].appendChild(labelPriority)
+            labelPriority.innerText=todoList[list].priorityType
             todoListElement[list].appendChild(checkbox)
             if(todoList[list].completed)
             {
@@ -144,23 +182,23 @@ function updatetodoList(todoId)
 function todoChecked(id)
 {
     let checkedtoDo=document.getElementById(id)
+    console.log(checkedtoDo)
     let taskCounter=document.getElementById("tasks-count")
     let todo = todoList.find(t => t.id === id)
     if(todo) {
         todo.completed = checkedtoDo.checked
     }
-    if(!taskCounter.innerText==0)
+    
+    if(checkedtoDo.checked)
     {
-        if(checkedtoDo.checked)
-        {
-            sumforTask+=1
-            taskCounter.innerText=sumforTask
-        }
-        else{
-            sumforTask-=1
-            taskCounter.innerText=sumforTask
-        }
+        sumforTask+=1
+        taskCounter.innerText=sumforTask
     }
+    else if(!checkedtoDo.checked){
+        sumforTask-=1
+        taskCounter.innerText=sumforTask
+    }
+    
 }
 
 function deleteProcess(id)
@@ -192,3 +230,4 @@ function deleteProcess(id)
     })
     console.log(todoList)
 }
+

@@ -173,7 +173,7 @@ body{
 #todolistelement li{
     list-style: none;
     background-color: aliceblue;
-    padding: 2%;
+    padding: 1.5%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -182,14 +182,29 @@ body{
     border: 1px solid;
     border-radius: 10px;
 }
-
+.priority{
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+}
 label{
     font-size: medium;
 }
 #delete-todo{
-    height: 45px;
-    width: 45px;
+    height: 32px;
+    width: 35px;
     border: none;
+}
+
+#delete-todo img{
+    height: 20px;
+    width: 20px;
+}
+
+button:hover{
+    cursor: pointer;
 }
 #delete-todo:hover{
     background-color: #f53041;
